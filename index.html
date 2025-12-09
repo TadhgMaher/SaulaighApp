@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#6b8e6f">
-    <meta name="description" content="Saulaigh VR Portal - Premium VR Experience Platform">
+    <meta name="description" content="Saulaigh VR Portal - Immersive Architectural Experiences">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Saulaigh VR">
@@ -12,101 +12,310 @@
     <link rel="manifest" href="manifest.json">
     <link rel="icon" type="image/png" href="images/logo-small.png">
     <link rel="apple-touch-icon" href="images/icons/icon-192.png">
-    <link rel="stylesheet" href="style.css?v=2">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            background: #000;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
+        }
+
+        #canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        #ui {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        #login-screen {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 60px 50px;
+            border-radius: 12px;
+            border-left: 4px solid #6b8e6f;
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            pointer-events: auto;
+            z-index: 100;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        .login-header {
+            margin-bottom: 30px;
+        }
+
+        .login-header h1 {
+            color: #6b8e6f;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .login-header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: left;
+        }
+
+        .form-group label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input {
+            padding: 12px 0;
+            font-size: 16px;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #e0e0e0;
+            color: #1a1a1a;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input::placeholder {
+            color: #999;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-bottom-color: #6b8e6f;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 14px;
+            text-align: center;
+            min-height: 20px;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            min-height: 48px;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: #6b8e6f;
+            color: white;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+            margin-top: 16px;
+            pointer-events: auto;
+        }
+
+        .btn-primary:hover {
+            background: #5f7b63;
+        }
+
+        .btn-primary:active {
+            transform: translateY(-2px);
+        }
+
+        #gallery-screen {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            pointer-events: auto;
+            z-index: 100;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+        }
+
+        #gallery-screen h2 {
+            color: #6b8e6f;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        #gallery-screen p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .projects-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .project-btn {
+            background: white;
+            color: #6b8e6f;
+            border: 2px solid #6b8e6f;
+            padding: 16px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            pointer-events: auto;
+            font-family: inherit;
+        }
+
+        .project-btn:hover {
+            background: #f5f7f5;
+        }
+
+        .project-btn:active {
+            transform: translateY(-2px);
+        }
+
+        .exit-btn {
+            margin-top: 24px;
+            background: transparent;
+            color: #666;
+            border: 1px solid #e0e0e0;
+            padding: 12px 24px;
+            pointer-events: auto;
+        }
+
+        .exit-btn:hover {
+            background: #f5f7f5;
+            color: #1a1a1a;
+        }
+
+        #loading {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            font-size: 18px;
+            z-index: 200;
+            pointer-events: none;
+        }
+
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (hover: none) and (pointer: coarse) {
+            .btn, .project-btn, .exit-btn {
+                min-height: 72px;
+                padding: 20px 44px;
+                font-size: 18px;
+            }
+
+            #login-screen {
+                padding: 40px 30px;
+            }
+
+            .form-group input {
+                min-height: 64px;
+                font-size: 18px;
+                padding: 20px 0;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Splash Screen -->
-    <div id="splash-screen" class="screen active">
-        <div class="splash-background">
-            <div class="gradient-orb orb-1"></div>
-            <div class="gradient-orb orb-2"></div>
-            <div class="gradient-orb orb-3"></div>
-        </div>
-        <div class="splash-container">
-            <div class="splash-logo-wrapper">
-                <img src="images/logo.png" alt="Saulaigh Logo" class="logo">
-            </div>
-            <div class="splash-content">
-                <h1 class="splash-title">SAULAIGH</h1>
-                <p class="splash-subtitle">VR Experience Portal</p>
-                <div class="splash-accent-line"></div>
-            </div>
-            <button id="enter-portal-btn" class="btn btn-primary btn-glow">Enter Portal</button>
-            <div class="splash-footer">
-                <p class="version-text">Premium VR Platform</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Login Screen -->
-    <div id="login-screen" class="screen">
-        <div class="login-background">
-            <div class="gradient-orb orb-login-1"></div>
-            <div class="gradient-orb orb-login-2"></div>
-        </div>
-        <div class="login-container">
+    <canvas id="canvas"></canvas>
+    
+    <div id="ui">
+        <!-- Login Screen -->
+        <div id="login-screen">
             <div class="login-header">
-                <img src="images/logo.png" alt="Saulaigh Logo" class="login-logo">
-                <h2>Access Portal</h2>
-                <p class="login-subtitle">Authenticate to continue</p>
+                <h1>BayT VR Portal</h1>
+                <p>Immersive Architectural Experiences</p>
             </div>
             
             <form id="login-form" class="login-form">
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <div class="input-wrapper">
-                        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2M12 3a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/>
-                        </svg>
-                        <input type="text" id="username" placeholder="Username" required>
-                    </div>
+                    <input type="text" id="username" placeholder="Username" required>
                 </div>
                 
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <div class="input-wrapper">
-                        <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                        </svg>
-                        <input type="password" id="password" placeholder="Password" required>
-                    </div>
+                    <input type="password" id="password" placeholder="Password" required>
                 </div>
                 
                 <p id="login-error" class="error-message"></p>
                 
-                <button type="submit" class="btn btn-primary btn-login btn-glow">Authenticate</button>
+                <button type="submit" class="btn btn-primary">Authenticate</button>
             </form>
-            
-            <button id="back-login-btn" class="btn btn-tertiary">Go Back</button>
+        </div>
+
+        <!-- Gallery Screen -->
+        <div id="gallery-screen">
+            <h2>BayT VR Projects</h2>
+            <p>Select an experience to enter</p>
+            <div class="projects-list" id="projects-list"></div>
+            <button class="btn exit-btn" onclick="exitToLogin()">Exit Portal</button>
+        </div>
+
+        <!-- Loading -->
+        <div id="loading">
+            <div class="spinner"></div>
+            <p>Loading experience...</p>
         </div>
     </div>
 
-    <!-- Gallery Screen -->
-    <div id="gallery-screen" class="screen">
-        <div class="gallery-background">
-            <div class="gradient-orb orb-gallery-1"></div>
-            <div class="gradient-orb orb-gallery-2"></div>
-            <div class="gradient-grid"></div>
-        </div>
-        <div class="gallery-container">
-            <header class="gallery-header">
-                <div class="gallery-header-content">
-                    <h1>BayT VR Projects</h1>
-                    <p class="gallery-subtitle">Immersive Architectural Experiences</p>
-                </div>
-            </header>
-            
-            <div id="projects-grid" class="projects-grid">
-                <!-- Projects will be inserted here by JavaScript -->
-            </div>
-            
-            <footer class="gallery-footer">
-                <button id="logout-btn" class="btn btn-tertiary">Exit Portal</button>
-            </footer>
-        </div>
-    </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="script.js?v=2"></script>
 </body>
 </html>
