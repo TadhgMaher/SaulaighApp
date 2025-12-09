@@ -20,6 +20,7 @@ This guide explains how to install Saulaigh VR Portal as a standalone app on you
 GitHub Pages hosting (HTTPS required):
 
 1. Your site should be live at:
+
    ```
    https://tadhgmaher.github.io/SaulaighApp/bayt
    ```
@@ -88,23 +89,23 @@ The `manifest.json` file tells Meta Quest how to install it:
 
 ```json
 {
-  "display": "standalone",      // No browser UI
-  "orientation": "landscape",   // Lock to landscape
-  "theme_color": "#0A1422",     // Dark VR theme
-  "start_url": "./index.html"   // Launch page
+  "display": "standalone", // No browser UI
+  "orientation": "landscape", // Lock to landscape
+  "theme_color": "#0A1422", // Dark VR theme
+  "start_url": "./index.html" // Launch page
 }
 ```
 
 ### Web App vs Native App
 
-| Feature | Web App | Native App |
-|---------|--------|-----------|
-| Installation | One tap | App Store |
-| Size | ~100KB | Several MB |
-| Update | Automatic | Manual |
-| Offline | Cached only | Full |
-| Full-screen | Yes | Yes |
-| Performance | Excellent | Best |
+| Feature      | Web App     | Native App |
+| ------------ | ----------- | ---------- |
+| Installation | One tap     | App Store  |
+| Size         | ~100KB      | Several MB |
+| Update       | Automatic   | Manual     |
+| Offline      | Cached only | Full       |
+| Full-screen  | Yes         | Yes        |
+| Performance  | Excellent   | Best       |
 
 **For VR experiences, Web Apps are perfect** — they launch fast and update instantly.
 
@@ -150,7 +151,7 @@ Before sharing with others:
 ✅ **"Install App" appears** in browser menu  
 ✅ **App installs** and appears in Apps list  
 ✅ **Clicking app tile** launches full-screen  
-✅ **Pointer interaction** works smoothly  
+✅ **Pointer interaction** works smoothly
 
 ---
 
@@ -160,16 +161,16 @@ Edit `/bayt/script.js`:
 
 ```javascript
 const projects = [
-    {
-        name: "Francis — Rev 2",
-        thumb: "images/francis-thumb.jpg",
-        url: "https://saulaighvr.shapespark.com/francismulcahy/"
-    },
-    {
-        name: "New Project",
-        thumb: "images/new-thumb.jpg",
-        url: "https://saulaighvr.shapespark.com/newproject/"
-    }
+  {
+    name: "Francis — Rev 2",
+    thumb: "images/francis-thumb.jpg",
+    url: "https://saulaighvr.shapespark.com/francismulcahy/",
+  },
+  {
+    name: "New Project",
+    thumb: "images/new-thumb.jpg",
+    url: "https://saulaighvr.shapespark.com/newproject/",
+  },
 ];
 ```
 
@@ -196,7 +197,7 @@ See: [GitHub Pages Custom Domain Setup](https://docs.github.com/en/pages/configu
 ✅ **Lazy loading** — Images load only when needed  
 ✅ **Minimal animations** — Smooth 60fps is essential  
 ✅ **Large buttons** — VR pointers need bigger targets  
-✅ **No hover effects** — VR headsets don't have hover  
+✅ **No hover effects** — VR headsets don't have hover
 
 All of these are already implemented!
 
