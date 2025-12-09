@@ -7,8 +7,6 @@
     --primary-green: #6b8e6f;
     --primary-white: #ffffff;
     --light-gray: #f5f7f5;
-    --medium-gray: #e8eae8;
-    --dark-gray: #3a3a3a;
     --text-primary: #1a1a1a;
     --text-secondary: #666666;
     --border-color: #e0e0e0;
@@ -34,7 +32,7 @@
 }
 
 /* ============================================
-   GENERAL STYLES
+   RESET & GENERAL STYLES
    ============================================ */
 
 * {
@@ -85,45 +83,7 @@ body {
         transform: translateY(0px);
     }
     50% {
-        transform: translateY(-20px);
-    }
-}
-
-@keyframes glow-pulse {
-    0%, 100% {
-        box-shadow: var(--shadow-medium);
-    }
-    50% {
-        box-shadow: var(--shadow-medium);
-    }
-}
-
-@keyframes slide-in-fade {
-    from {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-@keyframes orbit {
-    0% {
-        transform: rotate(0deg) translateX(100px) rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg) translateX(100px) rotate(-360deg);
-    }
-}
-
-@keyframes gradient-shift {
-    0%, 100% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
+        transform: translateY(-10px);
     }
 }
 
@@ -150,16 +110,16 @@ body {
     z-index: 100;
 }
 
-/* ============================================
-   BACKGROUND ELEMENTS - REMOVED (Clean Design)
-   ============================================ */
-
+/* Hide all background decoration elements */
 .gradient-orb,
 .splash-background,
 .login-background,
 .gallery-background,
 .gradient-grid {
-    display: none;
+    display: none !important;
+    visibility: hidden !important;
+    width: 0 !important;
+    height: 0 !important;
 }
 
 /* ============================================
@@ -186,6 +146,8 @@ body {
     height: auto;
     max-width: 80vw;
     filter: none;
+    box-shadow: none;
+    text-shadow: none;
 }
 
 .splash-content {
@@ -236,7 +198,6 @@ body {
     position: relative;
     z-index: 10;
     background: var(--primary-white);
-    backdrop-filter: none;
     padding: 60px 50px;
     border: 1px solid var(--border-color);
     border-radius: 12px;
@@ -260,6 +221,7 @@ body {
     width: 100px;
     height: auto;
     filter: none;
+    box-shadow: none;
 }
 
 .login-container h2 {
@@ -319,10 +281,8 @@ body {
     border-bottom: 1px solid var(--border-color);
     color: var(--text-primary);
     font-family: inherit;
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease;
     min-height: 40px;
-    display: flex;
-    align-items: center;
 }
 
 .form-group input::placeholder {
@@ -332,12 +292,10 @@ body {
 .form-group input:focus {
     outline: none;
     border-bottom-color: var(--primary-green);
-    color: var(--text-primary);
-    caret-color: var(--primary-green);
 }
 
 .error-message {
-    color: #FF6B6B;
+    color: #e74c3c;
     font-size: var(--font-size-sm);
     text-align: center;
     min-height: 20px;
@@ -426,18 +384,10 @@ body {
     position: relative;
 }
 
-.project-card::before {
-    display: none;
-}
-
 .project-card:active {
     transform: translateY(-4px);
     box-shadow: var(--shadow-medium);
     border-color: var(--primary-green);
-}
-
-.project-card:active::before {
-    display: none;
 }
 
 .project-thumbnail {
@@ -504,25 +454,6 @@ body {
     font-family: inherit;
 }
 
-.btn::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.2);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-    pointer-events: none;
-}
-
-.btn:active::before {
-    width: 300px;
-    height: 300px;
-}
-
 .btn-primary {
     background: var(--primary-green);
     color: var(--primary-white);
@@ -530,10 +461,13 @@ body {
     border: none;
 }
 
+.btn-primary:hover {
+    background: #5f7b63;
+}
+
 .btn-primary:active {
     transform: translateY(-2px);
     box-shadow: var(--shadow-medium);
-    background: #5f7b63;
 }
 
 .btn-glow {
@@ -547,10 +481,13 @@ body {
     box-shadow: var(--shadow-light);
 }
 
+.btn-secondary:hover {
+    background: var(--light-gray);
+}
+
 .btn-secondary:active {
     transform: translateY(-2px);
     box-shadow: var(--shadow-medium);
-    background: #f5f7f5;
 }
 
 .btn-tertiary {
@@ -558,6 +495,11 @@ body {
     color: var(--text-secondary);
     border: 1px solid var(--border-color);
     transition: all 0.3s ease;
+}
+
+.btn-tertiary:hover {
+    background: var(--light-gray);
+    border-color: var(--text-secondary);
 }
 
 .btn-tertiary:active {
@@ -590,26 +532,35 @@ body {
 }
 
 /* ============================================
-   RESPONSIVE DESIGN
+   RESPONSIVE DESIGN - TABLET
    ============================================ */
 
 @media (max-width: 768px) {
-    .splash-title { font-size: 42px; }
-    .logo { width: 180px; }
+    .splash-title {
+        font-size: 42px;
+    }
+    
+    .logo {
+        width: 180px;
+    }
     
     .login-container {
         padding: 40px 30px;
         max-width: 95%;
     }
     
-    .login-container h2 { font-size: var(--font-size-xl); }
+    .login-container h2 {
+        font-size: var(--font-size-xl);
+    }
     
     .gallery-header {
         padding: 32px 24px;
         margin-bottom: 30px;
     }
     
-    .gallery-header h1 { font-size: 28px; }
+    .gallery-header h1 {
+        font-size: 28px;
+    }
     
     .projects-grid {
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -617,8 +568,13 @@ body {
         padding: 0 10px;
     }
     
-    .project-card { min-height: 340px; }
-    .project-thumbnail { height: 200px; }
+    .project-card {
+        min-height: 340px;
+    }
+    
+    .project-thumbnail {
+        height: 200px;
+    }
     
     .btn {
         padding: 14px 32px;
@@ -627,10 +583,22 @@ body {
     }
 }
 
+/* ============================================
+   RESPONSIVE DESIGN - MOBILE
+   ============================================ */
+
 @media (max-width: 480px) {
-    .splash-title { font-size: 32px; }
-    .splash-subtitle { font-size: 13px; }
-    .logo { width: 140px; }
+    .splash-title {
+        font-size: 32px;
+    }
+    
+    .splash-subtitle {
+        font-size: 13px;
+    }
+    
+    .logo {
+        width: 140px;
+    }
     
     .login-container {
         padding: 30px 20px;
@@ -643,7 +611,9 @@ body {
         min-height: 48px;
     }
     
-    .gallery-container { padding: 20px 16px; }
+    .gallery-container {
+        padding: 20px 16px;
+    }
     
     .gallery-header {
         padding: 24px 16px;
@@ -661,10 +631,21 @@ body {
         margin-bottom: 24px;
     }
     
-    .project-card { min-height: 320px; }
-    .project-thumbnail { height: 180px; }
-    .project-info { padding: 20px 16px; }
-    .project-name { font-size: 16px; }
+    .project-card {
+        min-height: 320px;
+    }
+    
+    .project-thumbnail {
+        height: 180px;
+    }
+    
+    .project-info {
+        padding: 20px 16px;
+    }
+    
+    .project-name {
+        font-size: 16px;
+    }
     
     .btn {
         padding: 12px 24px;
@@ -685,8 +666,13 @@ body {
         padding: 20px 44px;
     }
     
-    .project-card { min-height: 420px; }
-    .project-thumbnail { height: 280px; }
+    .project-card {
+        min-height: 420px;
+    }
+    
+    .project-thumbnail {
+        height: 280px;
+    }
     
     .form-group input {
         min-height: 64px;
@@ -699,8 +685,15 @@ body {
         font-weight: 700;
     }
     
-    .splash-title { font-size: 60px; }
-    .gallery-header h1 { font-size: 36px; }
+    .splash-title {
+        font-size: 60px;
+    }
     
-    .projects-grid { gap: 40px; }
+    .gallery-header h1 {
+        font-size: 36px;
+    }
+    
+    .projects-grid {
+        gap: 40px;
+    }
 }
