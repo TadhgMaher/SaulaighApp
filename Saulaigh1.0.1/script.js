@@ -148,7 +148,7 @@ function renderGallery() {
         projectCard.className = "project-card";
 
         projectCard.innerHTML = `
-            <img src="${project.thumb}" alt="${project.name}" class="project-thumbnail" loading="lazy">
+            <img src="${project.thumb}" alt="${project.name}" class="project-thumbnail" loading="lazy" onerror="this.src='images/logo.png'">
             <div class="project-info">
                 <div class="project-name">${project.name}</div>
             </div>
