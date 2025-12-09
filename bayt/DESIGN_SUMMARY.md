@@ -3,6 +3,7 @@
 ## What You Get Now
 
 ### 🎨 **Premium UI Design**
+
 - **Dark VR Theme** — `#0A1422` primary dark with cyan/blue accents
 - **Gradient Animations** — Floating orbs, smooth transitions, glowing buttons
 - **Professional Typography** — Uppercase headings, gradient text effects
@@ -10,6 +11,7 @@
 - **Responsive Grid** — Adapts from desktop to VR headset displays
 
 ### 🕹️ **VR-Optimized Interface**
+
 - **Large Touch Targets** — Minimum 72px buttons for VR pointers
 - **No Hover Effects** — Click-only interactions (VR headsets can't hover)
 - **Landscape Lock** — Auto-locks to landscape orientation
@@ -17,6 +19,7 @@
 - **Pointer Feedback** — Touch feedback on project cards
 
 ### 📱 **Standalone App Ready**
+
 - **Progressive Web App** — Installs on Meta Quest like a native app
 - **App Manifest** — `manifest.json` configured for VR headsets
 - **No Browser UI** — Launches full-screen without address bar
@@ -24,6 +27,7 @@
 - **One-Tap Launch** — Instant access from home
 
 ### 🎬 **Enhanced Interactions**
+
 - **Smooth Animations** — 0.3s transitions, stagger effects
 - **Active States** — Visual feedback on button press
 - **Ripple Effect** — Expanding circle on button click
@@ -35,6 +39,7 @@
 ## Visual Design System
 
 ### Colors
+
 ```
 Primary Dark:    #0A1422
 Primary Mid:     #2D4E6C
@@ -47,12 +52,14 @@ Text Secondary:  #B0BCC4
 ```
 
 ### Typography
+
 - **Headings** — 64px, 700 weight, uppercase
 - **Project Cards** — 20px, 700 weight, centered
 - **Buttons** — 16-18px, 700 weight, uppercase
 - **Form Labels** — 14px, 600 weight, uppercase
 
 ### Layout
+
 - **Splash Screen** — Centered, animated logo, gradient text
 - **Login Panel** — Frosted glass, 450px max width, dark gradient
 - **Gallery** — Auto-fit grid, 320px minimum, 32px gap
@@ -81,23 +88,24 @@ bayt/
 
 ## Key Improvements Made
 
-| Aspect | Before | After |
-|--------|--------|-------|
-| **Theme** | Light, basic | Dark, premium |
-| **Animations** | Static | Floating orbs, glows, transitions |
-| **VR Buttons** | 56px min | 72px min |
-| **Login** | White box | Frosted glass, gradient |
-| **Color Scheme** | Blue/light | Cyan/blue/dark |
-| **Pointers** | Basic | Enhanced touch feedback |
-| **Gallery Cards** | Simple | Gradient border, glow effects |
-| **App Mode** | Basic PWA | Full VR headset optimized |
-| **Documentation** | Basic | VR-specific guide included |
+| Aspect            | Before       | After                             |
+| ----------------- | ------------ | --------------------------------- |
+| **Theme**         | Light, basic | Dark, premium                     |
+| **Animations**    | Static       | Floating orbs, glows, transitions |
+| **VR Buttons**    | 56px min     | 72px min                          |
+| **Login**         | White box    | Frosted glass, gradient           |
+| **Color Scheme**  | Blue/light   | Cyan/blue/dark                    |
+| **Pointers**      | Basic        | Enhanced touch feedback           |
+| **Gallery Cards** | Simple       | Gradient border, glow effects     |
+| **App Mode**      | Basic PWA    | Full VR headset optimized         |
+| **Documentation** | Basic        | VR-specific guide included        |
 
 ---
 
 ## How to Use
 
 ### 1. Test Locally (Desktop)
+
 ```bash
 cd /Users/tadhg/Desktop/Saulaigh/bayt
 python3 -m http.server 8000
@@ -105,24 +113,28 @@ python3 -m http.server 8000
 ```
 
 ### 2. Test on Meta Quest
+
 1. Your site is live at: `https://tadhgmaher.github.io/SaulaighApp/bayt`
 2. Open Meta Quest Browser
 3. Navigate to the URL
 4. Login with **BayT** / **2025**
 
 ### 3. Install as App
+
 1. Tap browser menu (3 dots)
 2. Select "Install App"
 3. App appears in Meta Quest Apps list
 4. Tap to launch
 
 ### 4. Add More Projects
+
 Edit `/bayt/script.js`:
+
 ```javascript
 projects.push({
-    name: "New Project",
-    thumb: "images/new-thumb.jpg",
-    url: "https://saulaighvr.shapespark.com/url/"
+  name: "New Project",
+  thumb: "images/new-thumb.jpg",
+  url: "https://saulaighvr.shapespark.com/url/",
 });
 ```
 
@@ -133,21 +145,25 @@ Commit, push, and changes appear instantly.
 ## Animation Breakdown
 
 ### Splash Screen
+
 - **Logo**: Floats up/down (4s cycle)
 - **Title**: Cyan→Blue gradient text
 - **Button**: Pulsing glow animation
 
 ### Login Screen
+
 - **Slide up** on load (0.8s)
 - **Input focus**: Border color transition
 - **Icons**: Blue color on inputs
 
 ### Gallery
+
 - **Fade in** on display (0.8s)
 - **Project cards**: Translate up on click, border glow
 - **Thumbnail**: Scale 1.05x on click
 
 ### Buttons
+
 - **Ripple effect** on click (circle expands)
 - **Translate down** 2px on press
 - **Shadow** increases on interaction
@@ -163,7 +179,7 @@ Commit, push, and changes appear instantly.
 ✅ **Lazy Loading** — Images load on demand  
 ✅ **No Keyboard** — Voice input compatible  
 ✅ **Touch Feedback** — Visual response to pointer input  
-✅ **App Installation** — One-tap add to home screen  
+✅ **App Installation** — One-tap add to home screen
 
 ---
 
@@ -191,14 +207,14 @@ Commit, push, and changes appear instantly.
 
 ## Browser Compatibility
 
-| Browser | Status |
-|---------|--------|
-| Chrome | ✅ Full support |
-| Firefox | ✅ Full support |
-| Safari | ✅ Full support |
+| Browser            | Status                        |
+| ------------------ | ----------------------------- |
+| Chrome             | ✅ Full support               |
+| Firefox            | ✅ Full support               |
+| Safari             | ✅ Full support               |
 | Meta Quest Browser | ✅ Full support + app install |
-| Firefox Reality | ✅ Full support + app install |
-| Edge | ✅ Full support |
+| Firefox Reality    | ✅ Full support + app install |
+| Edge               | ✅ Full support               |
 
 ---
 
@@ -213,31 +229,37 @@ Commit, push, and changes appear instantly.
 ✅ App installs on Meta Quest  
 ✅ Full-screen mode activates  
 ✅ No console errors  
-✅ Images lazy load  
+✅ Images lazy load
 
 ---
 
 ## Customization Guide
 
 ### Change Theme Colors
+
 Edit `/bayt/style.css`:
+
 ```css
 :root {
-    --accent-blue: #00A8E8;      /* Change this */
-    --accent-cyan: #00D4FF;      /* Change this */
-    --primary-dark: #0A1422;     /* Change this */
+  --accent-blue: #00a8e8; /* Change this */
+  --accent-cyan: #00d4ff; /* Change this */
+  --primary-dark: #0a1422; /* Change this */
 }
 ```
 
 ### Change Login Credentials
+
 Edit `/bayt/script.js`:
+
 ```javascript
-const VALID_USERNAME = "BayT";   /* Change this */
-const VALID_PASSWORD = "2025";   /* Change this */
+const VALID_USERNAME = "BayT"; /* Change this */
+const VALID_PASSWORD = "2025"; /* Change this */
 ```
 
 ### Change App Name
+
 Edit `/bayt/manifest.json`:
+
 ```json
 "name": "Saulaigh VR Portal",    /* Change this */
 "short_name": "Saulaigh"         /* Change this */
@@ -248,11 +270,13 @@ Edit `/bayt/manifest.json`:
 ## Live Demo
 
 **GitHub Pages URL:**
+
 ```
 https://tadhgmaher.github.io/SaulaighApp/bayt
 ```
 
 **Test on Desktop Browser First:**
+
 1. Open the URL
 2. Try splash screen
 3. Login with BayT / 2025
@@ -260,6 +284,7 @@ https://tadhgmaher.github.io/SaulaighApp/bayt
 5. Click a project
 
 **Then Test on Meta Quest:**
+
 1. Put on headset
 2. Open Meta Quest Browser
 3. Paste URL
