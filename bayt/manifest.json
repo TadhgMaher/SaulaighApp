@@ -1,14 +1,14 @@
 {
     "name": "Saulaigh VR Portal",
-    "short_name": "Saulaigh VR",
-    "description": "Saulaigh VR Portal for Bayt - Access VR walkthroughs",
+    "short_name": "Saulaigh",
+    "description": "Premium VR Experience Platform - Bayt Architectural Walkthroughs",
     "start_url": "./index.html",
     "scope": "./",
     "display": "standalone",
-    "orientation": "portrait-primary",
-    "theme_color": "#2D4E6C",
-    "background_color": "#ffffff",
-    "categories": ["productivity", "utilities"],
+    "orientation": "landscape",
+    "theme_color": "#0A1422",
+    "background_color": "#0A1422",
+    "categories": ["entertainment", "utilities"],
     "icons": [
         {
             "src": "images/icons/icon-192.png",

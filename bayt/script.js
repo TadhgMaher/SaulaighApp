@@ -8,7 +8,7 @@ const projects = [
         thumb: "images/francis-thumb.jpg",
         url: "https://saulaighvr.shapespark.com/francismulcahy/"
     }
-    // To add a new project, add an object here:
+    // To add a new project, simply add an object:
     // {
     //     name: "Project Name",
     //     thumb: "images/project-thumb.jpg",
@@ -42,6 +42,43 @@ const logoutBtn = document.getElementById("logout-btn");
 const projectsGrid = document.getElementById("projects-grid");
 
 // ============================================
+// VR & APP INSTALLATION SUPPORT
+// ============================================
+
+let deferredPrompt = null;
+
+// Listen for install prompt on compatible devices
+window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    console.log("App installation available on this device");
+});
+
+// Request full-screen on VR headsets
+async function requestFullscreen() {
+    try {
+        if (document.documentElement.requestFullscreen) {
+            await document.documentElement.requestFullscreen();
+        } else if (document.documentElement.webkitRequestFullscreen) {
+            await document.documentElement.webkitRequestFullscreen();
+        }
+    } catch (err) {
+        console.log("Fullscreen not available:", err);
+    }
+}
+
+// Lock screen orientation for VR (landscape)
+async function lockOrientation() {
+    try {
+        if (screen.orientation && screen.orientation.lock) {
+            await screen.orientation.lock("landscape");
+        }
+    } catch (err) {
+        console.log("Orientation lock not available:", err);
+    }
+}
+
+// ============================================
 // SCREEN NAVIGATION
 // ============================================
 
@@ -53,6 +90,7 @@ function showScreen(screenElement) {
 }
 
 enterPortalBtn.addEventListener("click", () => {
+    lockOrientation();
     showScreen(loginScreen);
     usernameInput.focus();
 });
@@ -90,6 +128,7 @@ loginForm.addEventListener("submit", (e) => {
         loginErrorMsg.textContent = "";
         renderGallery();
         showScreen(galleryScreen);
+        requestFullscreen();
     } else {
         loginErrorMsg.textContent = "Invalid username or password";
         passwordInput.value = "";
@@ -109,14 +148,24 @@ function renderGallery() {
         projectCard.className = "project-card";
 
         projectCard.innerHTML = `
-            <img src="${project.thumb}" alt="${project.name}" class="project-thumbnail">
+            <img src="${project.thumb}" alt="${project.name}" class="project-thumbnail" loading="lazy">
             <div class="project-info">
                 <div class="project-name">${project.name}</div>
             </div>
         `;
 
         projectCard.addEventListener("click", () => {
-            window.open(project.url, "_blank");
+            // Open in new tab for VR headset browsers
+            window.open(project.url, "_blank", "noopener,noreferrer");
+        });
+
+        // VR pointer optimization - add touch feedback
+        projectCard.addEventListener("touchstart", () => {
+            projectCard.style.opacity = "0.8";
+        });
+
+        projectCard.addEventListener("touchend", () => {
+            projectCard.style.opacity = "1";
         });
 
         projectsGrid.appendChild(projectCard);
@@ -124,10 +173,54 @@ function renderGallery() {
 }
 
 // ============================================
-// INITIALIZATION
+// INITIALIZATION & VR SETUP
 // ============================================
 
-document.addEventListener("DOMContentLoaded", () => {
+function initializeVRApp() {
+    console.log("🎮 Saulaigh VR Portal initialized");
+    console.log("Platform: " + (navigator.userAgent.includes("Meta") ? "Meta Quest" : "Unknown VR Device"));
+    
+    // Initialize app for full-screen VR experience
     showScreen(splashScreen);
-    console.log("Saulaigh VR Portal initialized");
+    
+    // Prevent sleep on VR headsets
+    try {
+        navigator.wakeLock.request("screen").catch(err => {
+            console.log("Wake lock not available");
+        });
+    } catch (err) {
+        console.log("Wake lock not supported");
+    }
+    
+    // Register service worker for app installation
+    if ("serviceWorker" in navigator) {
+        // Service worker registration could go here if needed
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    initializeVRApp();
+});
+
+// Handle app installation
+window.addEventListener("appinstalled", () => {
+    console.log("App installed successfully!");
+    deferredPrompt = null;
+});
+
+// Handle visibility changes (pause content when minimized)
+document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+        console.log("App backgrounded");
+    } else {
+        console.log("App foregrounded");
+    }
+});
+
+// Prevent accidental back navigation
+window.addEventListener("popstate", (e) => {
+    if (isLoggedIn) {
+        e.preventDefault();
+        // User is in gallery, prevent back
+    }
 });
