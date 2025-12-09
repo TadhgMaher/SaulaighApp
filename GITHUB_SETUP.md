@@ -71,6 +71,7 @@ https://YOUR_USERNAME.github.io/Saulaigh/bayt
 ```
 
 You can also find this URL in:
+
 - GitHub Settings → Pages (near the top, shows "Your site is live at...")
 
 ---
@@ -78,11 +79,13 @@ You can also find this URL in:
 ## Step 5: Add Your Images
 
 1. In `/bayt/images/`, add:
+
    - `logo.png` (Saulaigh branding)
    - `logo-small.png` (favicon)
    - `francis-thumb.jpg` (project thumbnail)
 
 2. In `/bayt/images/icons/`, add 6 files:
+
    - `icon-192.png`
    - `icon-192-maskable.png`
    - `icon-512.png`
@@ -126,13 +129,13 @@ const projects = [
   {
     name: "Francis — Rev 2",
     thumb: "images/francis-thumb.jpg",
-    url: "https://saulaighvr.shapespark.com/francismulcahy/"
+    url: "https://saulaighvr.shapespark.com/francismulcahy/",
   },
   {
     name: "New Project",
     thumb: "images/new-thumb.jpg",
-    url: "https://saulaighvr.shapespark.com/newproject/"
-  }
+    url: "https://saulaighvr.shapespark.com/newproject/",
+  },
 ];
 ```
 
@@ -173,9 +176,9 @@ Edit `/bayt/style.css`:
 
 ```css
 :root {
-  --bayt-blue: #2D4E6C;
-  --bayt-light: #D8E3EB;
-  ...
+  --bayt-blue: #2d4e6c;
+  --bayt-light: #d8e3eb;
+  ...;
 }
 ```
 

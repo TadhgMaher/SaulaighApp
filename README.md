@@ -47,11 +47,13 @@ cd Saulaigh
 ### 2. Add Images
 
 Place these in `/bayt/images/`:
+
 - `logo.png` (~500x300px)
 - `logo-small.png` (32x32px, favicon)
 - `francis-thumb.jpg` (280x280px)
 
 Create app icons in `/bayt/images/icons/`:
+
 - `icon-192.png`, `icon-192-maskable.png`
 - `icon-512.png`, `icon-512-maskable.png`
 - `screenshot-540.png`, `screenshot-1080.png`
@@ -80,7 +82,7 @@ Edit `/bayt/script.js` and add to the `projects` array:
 projects.push({
   name: "New Bayt Project",
   thumb: "images/new-thumb.jpg",
-  url: "https://saulaighvr.shapespark.com/newproject/"
+  url: "https://saulaighvr.shapespark.com/newproject/",
 });
 ```
 
@@ -91,6 +93,7 @@ The gallery updates instantly — no rebuild needed.
 ### Change Login Credentials
 
 Edit `/bayt/script.js`:
+
 ```javascript
 const VALID_USERNAME = "BayT";
 const VALID_PASSWORD = "2025";
@@ -99,14 +102,16 @@ const VALID_PASSWORD = "2025";
 ### Change Colors
 
 Edit `/bayt/style.css`:
+
 ```css
---bayt-blue: #2D4E6C;
---bayt-light: #D8E3EB;
+--bayt-blue: #2d4e6c;
+--bayt-light: #d8e3eb;
 ```
 
 ### Change App Name
 
 Edit `/bayt/manifest.json`:
+
 ```json
 "name": "Saulaigh VR Portal",
 "short_name": "VR Portal"
@@ -126,6 +131,7 @@ This portal uses simple client-side validation. For a production application req
 ## 📦 GitHub Pages Deployment
 
 The repository is configured with GitHub Actions for automatic deployment:
+
 - Push to `main` branch triggers automatic deployment
 - No manual build steps required
 - Files in `/bayt` folder serve as the website root
@@ -133,6 +139,7 @@ The repository is configured with GitHub Actions for automatic deployment:
 ## 🎮 Meta Quest Installation
 
 Once deployed to GitHub Pages:
+
 1. Open the page in Meta Quest Browser
 2. Tap the menu button
 3. Select "Install App"
@@ -141,6 +148,7 @@ Once deployed to GitHub Pages:
 ## 📞 Support
 
 For issues or updates:
+
 1. Check the documentation files in `/bayt/`
 2. Review `START_HERE.txt` for quick troubleshooting
 3. Ensure all image files are present in `/bayt/images/`
