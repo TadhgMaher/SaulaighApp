@@ -239,20 +239,73 @@ function exitToLogin() {
     document.getElementById('password').value = '';
 }
 
+// Register Service Worker for PWA functionality
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+            .then((registration) => {
+                console.log('Service Worker registered successfully:', registration);
+            })
+            .catch((err) => {
+                console.log('Service Worker registration failed:', err);
+            });
+    });
+}
+
 // Initialize Three.js on page load
 window.addEventListener('load', () => {
-    // Request fullscreen and orientation lock for VR
-    if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen().catch(() => {});
-    }
+    // Enter fullscreen immediately
+    const enterFullscreen = async () => {
+        try {
+            if (document.documentElement.requestFullscreen) {
+                await document.documentElement.requestFullscreen({ navigationUI: 'hide' });
+            } else if (document.documentElement.webkitRequestFullscreen) {
+                await document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) {
+                await document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.msRequestFullscreen) {
+                await document.documentElement.msRequestFullscreen();
+            }
+        } catch (err) {
+            console.log('Fullscreen request failed:', err);
+        }
+    };
     
-    if (screen.orientation && screen.orientation.lock) {
-        screen.orientation.lock("landscape").catch(() => {});
-    }
+    // Lock screen orientation to landscape
+    const lockOrientation = async () => {
+        try {
+            if (screen.orientation && screen.orientation.lock) {
+                await screen.orientation.lock("landscape");
+            }
+        } catch (err) {
+            console.log('Orientation lock not available:', err);
+        }
+    };
+    
+    // Execute fullscreen and orientation setup
+    enterFullscreen();
+    lockOrientation();
     
     // Initialize Three.js scene
     initThreeJS();
     
     // Focus on username input
     document.getElementById('username').focus();
+    
+    // Prevent any UI elements from appearing
+    document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement) {
+            // If fullscreen exits, try to re-enter
+            enterFullscreen();
+        }
+    });
+});
+
+// Handle visibility changes to maintain fullscreen
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        console.log('App hidden');
+    } else {
+        console.log('App visible - maintaining fullscreen');
+    }
 });

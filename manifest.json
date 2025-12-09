@@ -1,14 +1,28 @@
 {
     "name": "Saulaigh VR Portal",
     "short_name": "Saulaigh",
-    "description": "Premium VR Experience Platform - Bayt Architectural Walkthroughs",
+    "description": "Premium VR Experience Platform - BayT Architectural Walkthroughs",
     "start_url": "./index.html",
     "scope": "./",
     "display": "standalone",
     "orientation": "landscape",
     "theme_color": "#6b8e6f",
-    "background_color": "#ffffff",
+    "background_color": "#000000",
     "categories": ["entertainment", "utilities"],
+    "screenshots": [
+        {
+            "src": "images/icons/screenshot-540.png",
+            "sizes": "540x720",
+            "type": "image/png",
+            "form_factor": "narrow"
+        },
+        {
+            "src": "images/icons/screenshot-1080.png",
+            "sizes": "1080x1440",
+            "type": "image/png",
+            "form_factor": "narrow"
+        }
+    ],
     "icons": [
         {
             "src": "images/icons/icon-192.png",
@@ -33,18 +47,6 @@
             "sizes": "512x512",
             "type": "image/png",
             "purpose": "maskable"
-        }
-    ],
-    "screenshots": [
-        {
-            "src": "images/icons/screenshot-540.png",
-            "sizes": "540x720",
-            "type": "image/png"
-        },
-        {
-            "src": "images/icons/screenshot-1080.png",
-            "sizes": "1080x1440",
-            "type": "image/png"
         }
     ]
 }
