@@ -324,11 +324,13 @@ body {
     scroll-behavior: smooth;
     position: relative;
     z-index: 10;
+    background: linear-gradient(to bottom, #ffffff 0%, #fafaf9 50%, #f5f7f5 100%);
 }
 
 .gallery-header {
-    background: var(--primary-white);
+    background: linear-gradient(135deg, var(--primary-white) 0%, #f9faf8 100%);
     border: 1px solid var(--border-color);
+    border-left: 4px solid var(--primary-green);
     color: var(--text-primary);
     padding: 48px 32px;
     text-align: center;
@@ -373,6 +375,7 @@ body {
 .project-card {
     background: var(--primary-white);
     border: 1px solid var(--border-color);
+    border-top: 3px solid var(--primary-green);
     border-radius: 12px;
     overflow: hidden;
     cursor: pointer;

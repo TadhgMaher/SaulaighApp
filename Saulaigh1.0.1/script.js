@@ -5,7 +5,7 @@
 const projects = [
     {
         name: "Francis — Rev 2",
-        thumb: "images/francis-thumb.jpg",
+        thumb: "images/Studio Image.jpg",
         url: "https://saulaighvr.shapespark.com/francismulcahy/"
     }
     // To add a new project, simply add an object:
